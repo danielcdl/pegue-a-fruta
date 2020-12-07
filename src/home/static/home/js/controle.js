@@ -1,3 +1,22 @@
+const nomeSala = document.getElementById('nomeSala').value();
+
+const chatSocket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/ws/chat/'
+    + nomeSala
+    + '/'
+);
+
+chatSocket.onmessage = function(e) {
+    console.log('onmessage', e)
+};
+
+chatSocket.onclose = function(e) {
+    console.log('onerror', e)
+};
+
+
 var tela = document.getElementById("myCanvas");
 var contexto = tela.getContext("2d");
 
@@ -16,6 +35,9 @@ function teclaPressionada(pressionada) {
     
 
     if (teclas.includes(tecla) ) {
+        chatSocket.send(JSON.stringify({
+            'tecla': tecla
+        }));
         contexto.clearRect(0, 0, tela.width, tela.height);
     }
 

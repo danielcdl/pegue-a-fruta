@@ -4,5 +4,7 @@ src/db.sqlite3
 src/db.sqlite3-journal
 
 src/jogo/settings.py
+src/jogo/__pycache__/
 
+src/home/__pycache__/
 src/home/Migrations
